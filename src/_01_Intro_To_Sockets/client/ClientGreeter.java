@@ -44,7 +44,7 @@ public class ClientGreeter {
 	   try {
 		   return InetAddress.getLocalHost().getHostAddress();
 	   } catch(Exception e) {
-		   return "error";
+		   return null;
 	   }
    }
   
