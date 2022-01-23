@@ -1,9 +1,18 @@
 package _02_Chat_Application;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
+import _00_Click_Chat.gui.ButtonClicker;
 import _00_Click_Chat.networking.Client;
 import _00_Click_Chat.networking.Server;
 
@@ -12,17 +21,20 @@ import _00_Click_Chat.networking.Server;
  */
 
 public class ChatApp extends JFrame{
-Server server;
-Client client;
-
-
+	
+JPanel panel = new JPanel();
+JTextField field = new JTextField();
+JButton button = new JButton("CLICK");
+	
+	Server server;
+	Client client;
+	
 	
 	public static void main(String[] args) {
-		
+		new ChatApp();
 	}
 	
-	
-	ChatApp(){
+	public ChatApp(){
 		
 		int response = JOptionPane.showConfirmDialog(null, "Would you like to host a connection?", "Buttons!", JOptionPane.YES_NO_OPTION);
 		if(response == JOptionPane.YES_OPTION){
@@ -32,7 +44,10 @@ Client client;
 			button.addActionListener((e)->{
 				server.sendClick();
 			});
-			add(button);
+			panel.setLayout(new GridLayout());
+			add(panel);
+			panel.add(field);
+			panel.add(button);
 			setVisible(true);
 			setSize(400, 300);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,26 +62,16 @@ Client client;
 			button.addActionListener((e)->{
 				client.sendClick();
 			});
-			add(button);
+			panel.setLayout(new GridLayout());
+			add(panel);
+			panel.add(field);
+			panel.add(button);
 			setVisible(true);
 			setSize(400, 300);
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			client.start();
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
-	
-	
 	
 	
 	
